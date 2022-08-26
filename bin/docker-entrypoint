@@ -1,0 +1,13 @@
+#!/bin/bash
+
+set -e
+
+if [ $RAILS_ENV == "development" ] || [ $RAILS_ENV == "test" ]; then
+  apt-get update
+  apt-get install -y --no-install-recommends build-essential vim git
+
+  bundle config --delete without
+  bundle install
+fi
+
+exec "$@"
